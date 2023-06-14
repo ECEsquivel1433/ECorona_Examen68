@@ -1,0 +1,83 @@
+﻿@model ML.Historial
+@{
+    ViewData["Title"] = "GetAllHistorial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <section>
+
+        <h1 class="text-center">Super Digito</h1>
+    </section>
+    <div class="container-fluid">
+        @using (Html.BeginForm("Operacion", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                <div class="col-md-3 visually-hidden">
+                    @Html.LabelFor(model => model.IdUsuario)
+                    <div class="input-group">
+                        <span class="visually-hidden"><i class="visually-hidden"></i></span>
+                        @Html.TextBoxFor(model => model.IdUsuario, new { @class = "visually-hidden", @id = "txtNombre" , @onkeypress="SoloLetras(event, 'txtNombre', 'lblNombre')" })
+                        @Html.ValidationMessageFor(model => model.IdUsuario, null, new {@class="text-danger"})
+                        @Html.Label(null, "", new{@id="lblNombre"})
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.Numero)
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-arrow-right-short"></i></span>
+                        @Html.TextBoxFor(model => model.Numero, new { @class = "form-control", @id = "txtNombre" , @onkeypress="SoloLetras(event, 'txtNombre', 'lblNombre')" })
+                        @Html.ValidationMessageFor(model => model.Numero, null, new {@class="text-danger"})
+                        @Html.Label(null, "", new{@id="lblNombre"})
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input type="submit" value="Calcular" class="btn btn-info" />
+
+                </div>
+
+            </div>
+
+        }
+    </div>
+    <section>
+        @if (Model.Historiales == null)
+        {
+            <div class="row">
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.Message
+                </div>
+            </div>
+        }
+        else
+        {
+            <table class="table table-dark table-hover table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        
+                        <td class="visually-hidden">IdHistorial</td>
+                        <td class="text-center" style="font-weight:bold;">Numero</td>
+                        <td class="text-center" style="font-weight:bold;">Resultado</td>
+
+                        <td class="text-center" style="font-weight:bold;">Fecha y Hora</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (ML.Historial historial in Model.Historiales)
+                    {
+                        <tr>
+                            <td class="visually-hidden">@historial.IdHistorial</td>
+                            <td>@historial.Numero </td>
+                            <td>@historial.Resultado </td>
+                            <td>@historial.FechaHora </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </section>
+</div>

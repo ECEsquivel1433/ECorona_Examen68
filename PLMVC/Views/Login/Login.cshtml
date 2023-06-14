@@ -1,0 +1,58 @@
+﻿@model ML.Usuario
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="/css/Login.css">
+<body>
+    <div class="login-wrap">
+        <div class="login-html">
+
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Registrarse</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Iniciar Sesión</label>
+
+            <div class="login-form">
+                <div class="sign-in-htm">
+                    @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+
+                        <div class="group">
+                            <label for="user" class="label">Username</label>
+                            <input type="text" class="input" name="UserName"  required="">
+                        </div>
+                        <div class="group">
+                            <label for="Password" class="label">Password</label>
+                            <input type="password" class="input" name="password"  required="">
+                        </div>
+                        <div class="group">
+                            <label for="Password" class="label">Passwordconfirm</label>
+                            <input type="password" class="input" name="passwordconfirm" required="">
+                        </div>
+                        <div class="group">
+                            <input type="submit" class="button" value="Registarse"/>
+                        </div>
+                    }
+                </div>
+                <div class="sign-up-htm">
+                    @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+
+                        <div class="group">
+                            <label for="user" class="label">Username</label>
+                            <input type="text" class="input" name="UserName" required="">
+                        </div>
+                        <div class="group">
+                            <label for="Password" class="label">Password</label>
+                            <input type="password" class="input" name="password"  required="">
+                        </div>
+                        <div class="group">
+                            <button type="submit" class="button">Login</button>
+                        </div>
+                        <a style="text-align: center;  display: flex; justify-content: center;" href="/Login/EmailContraseña">Olvide mi contraseña</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
