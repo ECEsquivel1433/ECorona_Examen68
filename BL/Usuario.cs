@@ -69,7 +69,6 @@ namespace BL
 
             return result;
         }
-
         public static ML.Result UsuarioHistorialGetAll(ML.Usuario usuario)
         {
             ML.Result result = new ML.Result();
@@ -99,6 +98,28 @@ namespace BL
             {
                 result.Correct = false;
                 result.ErrorMessage = "Ocurrio un error al insertar el historial" + ex;
+            }
+            return result;
+        }
+        public static ML.Result DeleteHistorialUsuario(ML.Usuario usuario)
+        {
+            ML.Result result = new ML.Result();
+
+            try
+            {
+                using (DL.EcoronaExamen68Context context = new DL.EcoronaExamen68Context())
+                {
+                    int queryEF = context.Database.ExecuteSqlRaw($"DeleteHistorialUsuario {usuario.IdUsuario}");
+                    if (queryEF > 0)
+                    {
+                        result.Correct = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Correct = false;
+                result.ErrorMessage = "Ocurrio un error al insertar el usuario" + ex;
             }
             return result;
         }

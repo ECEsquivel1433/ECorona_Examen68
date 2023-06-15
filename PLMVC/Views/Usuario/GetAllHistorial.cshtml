@@ -32,6 +32,11 @@
                         @Html.Label(null, "", new{@id="lblNombre"})
                     </div>
                 </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.Resultado)
+
+                        @Html.TextBoxFor(model => model.Resultado, new { @class = "form-control", @readonly="readonly" })
+                </div>
             </div>
             <div class="row">
                 <div class="col">
@@ -54,6 +59,7 @@
         }
         else
         {
+
             <table class="table table-dark table-hover table-bordered table-responsive">
                 <thead>
                     <tr>
@@ -79,5 +85,13 @@
                 </tbody>
             </table>
         }
+    </section>
+    <section>
+
+        <div style="float:right;">
+            <div class="row">
+                @Html.ActionLink("Limpiar", "DeleteHistorial", "Usuario", Model, htmlAttributes: new { @class = "btn btn-success bi bi-person-plus-fill" })
+            </div>
+        </div>
     </section>
 </div>
